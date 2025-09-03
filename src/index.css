@@ -1,0 +1,330 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Sikkim Heritage Color Palette */
+    --background: 210 40% 98%;
+    --foreground: 220 30% 15%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 220 30% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 30% 15%;
+
+    /* Saffron Primary (Buddhist Robes) */
+    --primary: 35 95% 58%;
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 35 85% 68%;
+
+    /* Mountain Blue Secondary */
+    --secondary: 220 70% 25%;
+    --secondary-foreground: 0 0% 100%;
+
+    /* Snow White Muted */
+    --muted: 210 40% 96%;
+    --muted-foreground: 220 25% 45%;
+
+    /* Forest Green Accent */
+    --accent: 140 60% 35%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 220 25% 88%;
+    --input: 220 25% 88%;
+    --ring: 35 95% 58%;
+
+    /* Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(35 95% 58%), hsl(220 70% 45%));
+    --gradient-mountain: linear-gradient(180deg, hsl(220 70% 25%), hsl(200 80% 40%));
+    --gradient-sunrise: linear-gradient(90deg, hsl(35 95% 58%), hsl(45 85% 65%), hsl(220 70% 45%));
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 100% / 0.9), hsl(210 40% 98% / 0.8));
+    --gradient-glass: linear-gradient(145deg, hsl(0 0% 100% / 0.1), hsl(210 40% 98% / 0.05));
+    --gradient-glass-border: linear-gradient(145deg, hsl(0 0% 100% / 0.2), hsl(210 40% 98% / 0.1));
+
+    /* Shadows */
+    --shadow-monastery: 0 20px 60px -10px hsl(220 70% 25% / 0.3);
+    --shadow-heritage: 0 10px 40px -15px hsl(35 95% 58% / 0.4);
+    --shadow-glow: 0 0 30px hsl(35 95% 58% / 0.3);
+    --shadow-glass: 0 8px 32px hsl(0 0% 0% / 0.12);
+    --shadow-glass-inset: inset 0 1px 0 hsl(0 0% 100% / 0.1);
+
+    --radius: 0.75rem;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  /* Float animation for decorative elements */
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  /* Scroll-triggered animations */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(60px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeInLeft {
+    from {
+      opacity: 0;
+      transform: translateX(-60px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes fadeInRight {
+    from {
+      opacity: 0;
+      transform: translateX(60px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes fadeInScale {
+    from {
+      opacity: 0;
+      transform: scale(0.8);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes slideInStagger {
+    from {
+      opacity: 0;
+      transform: translateY(40px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Scroll animation classes */
+  .scroll-animate {
+    opacity: 0;
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .scroll-animate.animate-in-up {
+    animation: fadeInUp 0.8s ease-out forwards;
+  }
+
+  .scroll-animate.animate-in-left {
+    animation: fadeInLeft 0.8s ease-out forwards;
+  }
+
+  .scroll-animate.animate-in-right {
+    animation: fadeInRight 0.8s ease-out forwards;
+  }
+
+  .scroll-animate.animate-in-scale {
+    animation: fadeInScale 0.8s ease-out forwards;
+  }
+
+  .scroll-animate.animate-in-stagger {
+    animation: slideInStagger 0.6s ease-out forwards;
+  }
+
+  /* Stagger delays for multiple elements */
+  .scroll-animate.delay-100 { animation-delay: 0.1s; }
+  .scroll-animate.delay-200 { animation-delay: 0.2s; }
+  .scroll-animate.delay-300 { animation-delay: 0.3s; }
+  .scroll-animate.delay-400 { animation-delay: 0.4s; }
+  .scroll-animate.delay-500 { animation-delay: 0.5s; }
+  .scroll-animate.delay-600 { animation-delay: 0.6s; }
+
+  /* Line clamp utility */
+  .line-clamp-2 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+  
+  /* Offline indicator styles */
+  .offline {
+    position: relative;
+  }
+
+  .offline::before {
+    content: "⚠️ You are offline - Some features may be limited";
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(135deg, #fbbf24, #f59e0b);
+    color: #92400e;
+    text-align: center;
+    padding: 8px;
+    font-weight: 500;
+    font-size: 14px;
+    z-index: 9999;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .offline main {
+    margin-top: 40px;
+  }
+
+  /* PWA optimizations */
+  @media (display-mode: standalone) {
+    body {
+      background-color: hsl(var(--background));
+      user-select: none; /* Better mobile experience */
+    }
+    
+    /* Hide scrollbars in standalone mode for cleaner look */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+      background: hsl(var(--muted-foreground));
+      border-radius: 3px;
+    }
+  }
+
+  /* Better touch targets for mobile and consistent button sizing */
+  button, [role="button"] {
+    min-height: 44px;
+    min-width: 44px;
+    touch-action: manipulation; /* Better touch response */
+  }
+  
+  /* Enhanced responsive button sizing */
+  @media (max-width: 768px) {
+    button, [role="button"] {
+      min-height: 48px; /* Slightly larger on mobile for better accessibility */
+      min-width: 48px;
+      font-size: 16px; /* Prevent zoom on iOS */
+    }
+    
+    /* Ensure small buttons maintain minimum size */
+    .btn-sm, button[data-size="sm"] {
+      min-height: 40px;
+      min-width: 40px;
+    }
+  }
+  
+  /* High contrast mode improvements */
+  @media (prefers-contrast: high) {
+    .bg-gradient-glass {
+      background: hsl(var(--background));
+      border: 2px solid hsl(var(--border));
+    }
+    
+    .text-muted-foreground {
+      color: hsl(var(--foreground));
+      opacity: 0.8;
+    }
+  }
+  
+  /* Reduced motion preferences */
+  @media (prefers-reduced-motion: reduce) {
+    .animate-pulse,
+    .animate-glow-pulse,
+    .animate-fade-in,
+    .scroll-animate {
+      animation: none !important;
+    }
+    
+    * {
+      transition-duration: 0.01ms !important;
+    }
+  }
+}

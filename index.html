@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Monastery360 - Digital Heritage Platform for Sikkim's Monasteries</title>
+    <meta name="description" content="Explore 200+ monasteries in Sikkim through virtual tours, digital archives, and cultural experiences. Discover Buddhist heritage through immersive technology." />
+    <meta name="author" content="Monastery360" />
+    <meta name="keywords" content="Sikkim monasteries, Buddhist heritage, virtual tours, digital archives, cultural tourism, Himalayas" />
+
+    <meta property="og:title" content="Monastery360 - Digital Heritage Platform for Sikkim's Monasteries" />
+    <meta property="og:description" content="Explore 200+ monasteries in Sikkim through virtual tours, digital archives, and cultural experiences." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@monastery360" />
+    <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+    
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#8B5CF6" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="Monastery360" />
+    <meta name="msapplication-TileColor" content="#8B5CF6" />
+    <meta name="msapplication-config" content="/browserconfig.xml" />
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="pwa-boilerplate/manifest.json" />
+    
+    <!-- Apple Touch Icons -->
+  <!-- Update these lines: -->
+<link rel="apple-touch-icon" href="/monastery-logo-1.png" />
+<link rel="apple-touch-icon" sizes="192x192" href="/monastery-logo-1.png" />
+<link rel="apple-touch-icon" sizes="512x512" href="/monastery-logo-5.png" />
+
+
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+    
+    <!-- PWA Service Worker -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js')
+            .then((registration) => {
+              console.log('SW registered: ', registration);
+            })
+            .catch((registrationError) => {
+              console.log('SW registration failed: ', registrationError);
+            });
+        });
+      }
+    </script>
+  </body>
+</html>
