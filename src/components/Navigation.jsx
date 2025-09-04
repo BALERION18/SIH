@@ -21,28 +21,22 @@ export const Navigation = ({ activeSection, setActiveSection }) => {
     setIsOpen(false);
   };
 
-  // 🔥 Always black text + subtle glow
-  const textStyle = "text-black drop-shadow-[0_0_6px_rgba(255,255,255,0.6)]";
-
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white/20 backdrop-blur-xl border-b border-white/30 shadow-lg">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-white shadow-md border-b border-gray-200 min-h-[72px]">
       <div className="container mx-auto px-4 py-3 flex items-center justify-between">
-        {/* Logo + Title */}
+        {/* Logo + Brand */}
         <div className="flex items-center space-x-3 mr-8">
           <img
             src={monasteryLogo}
             alt="Monastery360 Logo"
+            loading="eager"
+            decoding="async"
             className="w-8 h-8 object-contain"
           />
-          <h1 className={`text-xl font-bold transition-colors ${textStyle}`}>
-            Monastery
-            <span className="text-primary drop-shadow-[0_0_6px_rgba(59,130,246,0.7)]">
-              360
-            </span>
-          </h1>
+          <h1 className="text-xl font-bold text-gray-900">Monastery360</h1>
         </div>
 
-        {/* Desktop Nav */}
+        {/* Desktop Navigation */}
         <div className="hidden lg:flex items-center space-x-6 flex-1 justify-center">
           {navigationItems.map((item) => {
             const Icon = item.icon;
@@ -52,8 +46,8 @@ export const Navigation = ({ activeSection, setActiveSection }) => {
                 onClick={() => handleNavigation(item.id)}
                 className={`flex items-center space-x-2 px-4 py-2 rounded-lg transition-all duration-200 text-sm font-medium ${
                   activeSection === item.id
-                    ? `${textStyle} bg-white/30`
-                    : `${textStyle} opacity-80 hover:opacity-100 hover:bg-white/20`
+                    ? "text-gray-900 bg-gray-100"
+                    : "text-gray-600 hover:text-gray-900 hover:bg-gray-50"
                 }`}
               >
                 {Icon && <Icon className="w-4 h-4" />}
@@ -68,17 +62,14 @@ export const Navigation = ({ activeSection, setActiveSection }) => {
           <ProfileSection />
         </div>
 
-        {/* Mobile Nav */}
+        {/* Mobile Navigation */}
         <Sheet open={isOpen} onOpenChange={setIsOpen}>
           <SheetTrigger asChild className="lg:hidden">
-            <button className={`p-2 rounded-md transition-all duration-200 ${textStyle}`}>
-              <Menu className="w-4 h-4" />
+            <button className="p-2 rounded-md text-gray-700 hover:text-gray-900 hover:bg-gray-100 transition-all duration-200">
+              <Menu className="w-5 h-5" />
             </button>
           </SheetTrigger>
-          <SheetContent
-            side="right"
-            className="w-[350px] bg-white/20 backdrop-blur-2xl border-white/30"
-          >
+          <SheetContent side="right" className="w-[350px] bg-white shadow-xl border-l border-gray-200">
             <div className="flex flex-col space-y-4 mt-8">
               {navigationItems.map((item) => {
                 const Icon = item.icon;
@@ -88,8 +79,8 @@ export const Navigation = ({ activeSection, setActiveSection }) => {
                     onClick={() => handleNavigation(item.id)}
                     className={`flex items-center space-x-2 justify-start w-full px-3 py-2 rounded-md transition-all duration-200 ${
                       activeSection === item.id
-                        ? `${textStyle} font-medium`
-                        : `${textStyle} opacity-80 hover:opacity-100`
+                        ? "text-gray-900 bg-gray-100 font-medium"
+                        : "text-gray-600 hover:text-gray-900 hover:bg-gray-50"
                     }`}
                   >
                     {Icon && <Icon className="w-4 h-4" />}
@@ -99,7 +90,7 @@ export const Navigation = ({ activeSection, setActiveSection }) => {
               })}
 
               {/* Mobile Profile Section */}
-              <div className="mt-8 pt-8 border-t border-white/20">
+              <div className="mt-8 pt-8 border-t border-gray-200">
                 <ProfileSection />
               </div>
             </div>
@@ -109,3 +100,4 @@ export const Navigation = ({ activeSection, setActiveSection }) => {
     </nav>
   );
 };
+
