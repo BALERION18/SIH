@@ -174,7 +174,7 @@ export const AudioGuide = () => {
             <Button 
               size="lg" 
               onClick={() => handleStartGuide(audioGuides[0])}
-              className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-glow"
+              className="bg-primary hover:bg-primary/90 text-primary-foreground px-3 shadow-glow"
             >
               <Play className="w-5 h-5 mr-2" />
               Start First Guide
@@ -183,7 +183,7 @@ export const AudioGuide = () => {
               size="lg" 
               variant="outline"
               onClick={() => document.getElementById('guides-grid')?.scrollIntoView({ behavior: 'smooth' })}
-              className="bg-white/10 backdrop-blur-sm border-white/20 text-white hover:bg-white/20 hover:text-white"
+              className="bg-white/10 backdrop-blur-sm border-white/20 text-white hover:bg-white/20 hover:text-white px-3"
             >
               <Headphones className="w-5 h-5 mr-2" />
               Browse All Guides
