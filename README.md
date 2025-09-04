@@ -60,6 +60,47 @@ This project is built with:
 - shadcn-ui
 - Tailwind CSS
 
+## Backend API (Express + Prisma)
+
+The backend lives in `server/` and uses Express, Prisma, and SQLite for local development.
+
+### Setup
+
+```bash
+cd server
+npm install
+npm run prisma:generate
+npm run prisma:migrate
+npm run dev
+```
+
+The API will run at `http://localhost:4000`.
+
+Environment variables:
+
+```env
+# server/.env
+DATABASE_URL="file:./prisma/dev.db"
+PORT=4000
+FRONTEND_ORIGIN="http://localhost:5173"
+```
+
+Frontend can consume the API by setting:
+
+```env
+# .env (project root)
+VITE_API_URL="http://localhost:4000"
+```
+
+### Routes
+
+- GET `/` - health check
+- GET `/api/items` - list items
+- GET `/api/items/:id` - get item
+- POST `/api/items` - create item `{ name, description? }`
+- PUT `/api/items/:id` - update item
+- DELETE `/api/items/:id` - delete item
+
 ## How can I deploy this project?
 
 Simply open [Lovable](https://lovable.dev/projects/97f3387c-51cb-48bf-9277-7bf87de4b6ee) and click on Share -> Publish.
