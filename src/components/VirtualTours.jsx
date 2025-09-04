@@ -279,7 +279,7 @@ export const VirtualTours = () => {
                   <h4 className="text-sm font-medium mb-2">Tour Highlights:</h4>
                   <div className="flex flex-wrap gap-2">
                     {tour.highlights.map((highlight, index) => (
-                      <Badge key={index} variant="secondary" className="text-xs text-gray-800 px-2 py-1">
+                      <Badge key={index} variant="secondary" className="text-xs text-white px-2 py-1">
                         {highlight}
                       </Badge>
                     ))}
