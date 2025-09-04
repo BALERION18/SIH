@@ -253,21 +253,9 @@ export const VirtualTours = () => {
                     className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <Button
-                      size="lg"
-                      onClick={() => handleStartTour(tour)}
-                      className="bg-primary/90 hover:bg-primary shadow-glow text-primary-foreground"
-                    >
-                      <Play className="w-5 h-5 mr-2" />
-                      Start Tour
-                    </Button>
+                    
                   </div>
-                  <div className="absolute top-3 right-3">
-                    <Badge variant="secondary" className="bg-black/70 text-white">
-                      <Camera className="w-3 h-3 mr-1" />
-                      360°
-                    </Badge>
-                  </div>
+                  
                 </div>
               </CardHeader>
               <CardContent className="p-4">
@@ -281,17 +269,17 @@ export const VirtualTours = () => {
                   </div>
                   <div className="flex justify-between text-sm">
                     <span className="text-muted-foreground">Difficulty:</span>
-                    <Badge variant="outline" className="text-xs">
+                    <Badge variant="outline" className="text-xs px-2 py-1">
                       {tour.difficulty}
                     </Badge>
                   </div>
                 </div>
 
-                <div className="mb-3">
+                <div className="mb-2">
                   <h4 className="text-sm font-medium mb-2">Tour Highlights:</h4>
-                  <div className="flex flex-wrap gap-1">
+                  <div className="flex flex-wrap gap-2">
                     {tour.highlights.map((highlight, index) => (
-                      <Badge key={index} variant="secondary" className="text-xs">
+                      <Badge key={index} variant="secondary" className="text-xs text-gray-800 px-2 py-1">
                         {highlight}
                       </Badge>
                     ))}
@@ -302,7 +290,7 @@ export const VirtualTours = () => {
                   <h4 className="text-sm font-medium mb-2">Available Languages:</h4>
                   <div className="flex flex-wrap gap-1">
                     {tour.language.map((lang, index) => (
-                      <Badge key={index} variant="outline" className="text-xs">
+                      <Badge key={index} variant="outline" className="text-xs px-2 py-1">
                         {lang}
                       </Badge>
                     ))}
