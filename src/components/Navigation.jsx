@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Menu, MapPin, Camera, Archive, Calendar, Headphones } from "lucide-react";
 import monasteryLogo from "@/assets/monastery-logo.png";
@@ -6,7 +6,6 @@ import { ProfileSection } from "./ProfileSection";
 
 export const Navigation = ({ activeSection, setActiveSection }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [isLightBg, setIsLightBg] = useState(false);
 
   const navigationItems = [
     { id: "home", label: "Home", icon: null },
@@ -22,37 +21,8 @@ export const Navigation = ({ activeSection, setActiveSection }) => {
     setIsOpen(false);
   };
 
-  // Detect background under nav
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const bg = window.getComputedStyle(entry.target).backgroundColor;
-            if (!bg) return;
-
-            const rgb = bg.match(/\d+/g);
-            if (rgb) {
-              const [r, g, b] = rgb.map(Number);
-              const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
-              setIsLightBg(luminance > 0.7); // true if light background
-            }
-          }
-        });
-      },
-      { rootMargin: "-72px 0px 0px 0px", threshold: 0.5 }
-    );
-
-    // Watch all sections
-    const sections = document.querySelectorAll("section");
-    sections.forEach((sec) => observer.observe(sec));
-
-    return () => observer.disconnect();
-  }, []);
-
-  const textStyle = isLightBg
-    ? "text-gray-900 drop-shadow-[0_0_5px_rgba(0,0,0,0.3)]"
-    : "text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.9)]";
+  // 🔥 Always black text + subtle glow
+  const textStyle = "text-black drop-shadow-[0_0_6px_rgba(255,255,255,0.6)]";
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white/20 backdrop-blur-xl border-b border-white/30 shadow-lg">
@@ -66,7 +36,7 @@ export const Navigation = ({ activeSection, setActiveSection }) => {
           />
           <h1 className={`text-xl font-bold transition-colors ${textStyle}`}>
             Monastery
-            <span className="text-primary drop-shadow-[0_0_6px_rgba(59,130,246,0.9)]">
+            <span className="text-primary drop-shadow-[0_0_6px_rgba(59,130,246,0.7)]">
               360
             </span>
           </h1>
@@ -82,8 +52,8 @@ export const Navigation = ({ activeSection, setActiveSection }) => {
                 onClick={() => handleNavigation(item.id)}
                 className={`flex items-center space-x-2 px-4 py-2 rounded-lg transition-all duration-200 text-sm font-medium ${
                   activeSection === item.id
-                    ? `${textStyle} bg-white/10`
-                    : `${textStyle} opacity-80 hover:opacity-100 hover:bg-white/5`
+                    ? `${textStyle} bg-white/30`
+                    : `${textStyle} opacity-80 hover:opacity-100 hover:bg-white/20`
                 }`}
               >
                 {Icon && <Icon className="w-4 h-4" />}
@@ -107,7 +77,7 @@ export const Navigation = ({ activeSection, setActiveSection }) => {
           </SheetTrigger>
           <SheetContent
             side="right"
-            className="w-[350px] bg-white/10 backdrop-blur-2xl border-white/20"
+            className="w-[350px] bg-white/20 backdrop-blur-2xl border-white/30"
           >
             <div className="flex flex-col space-y-4 mt-8">
               {navigationItems.map((item) => {
