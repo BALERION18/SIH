@@ -4,28 +4,28 @@ import { SikkimCarousel } from "./SikkimCarousel";
 import { MapPin, Camera, Archive, Calendar, Headphones, Play } from "lucide-react";
 import { useScrollAnimation, useStaggeredScrollAnimation } from "@/hooks/useScrollAnimation";
 import heroImage from "@/assets/sikkim-monasteries-hero.jpg";
+import { Navigation } from "./Navigation"; // ✅ use the shared header
 
 // Preload critical hero image
 const preloadHeroImage = () => {
-  const link = document.createElement('link');
-  link.rel = 'preload';
-  link.as = 'image';
+  const link = document.createElement("link");
+  link.rel = "preload";
+  link.as = "image";
   link.href = heroImage;
   document.head.appendChild(link);
 };
-
-// Call preload immediately
 preloadHeroImage();
 
 export const Homepage = ({ setActiveSection }) => {
-  const heroRef = useScrollAnimation('scale');
-  const statsRef = useScrollAnimation('up', 0.2);
-  const carouselTitleRef = useScrollAnimation('left', 0.1);
-  const featuresHeaderRef = useScrollAnimation('right', 0.1);
-  const missionRef = useScrollAnimation('up', 0.1);
-  const setFeatureRef = useStaggeredScrollAnimation(5, 'stagger', 100);
-  const setMissionCardRef = useStaggeredScrollAnimation(3, 'stagger', 150);
-  const setStatsRef = useStaggeredScrollAnimation(4, 'up', 100);
+  const heroRef = useScrollAnimation("scale");
+  const statsRef = useScrollAnimation("up", 0.2);
+  const carouselTitleRef = useScrollAnimation("left", 0.1);
+  const featuresHeaderRef = useScrollAnimation("right", 0.1);
+  const missionRef = useScrollAnimation("up", 0.1);
+  const setFeatureRef = useStaggeredScrollAnimation(5, "stagger", 100);
+  const setMissionCardRef = useStaggeredScrollAnimation(3, "stagger", 150);
+  const setStatsRef = useStaggeredScrollAnimation(4, "up", 100);
+
   const features = [
     {
       icon: MapPin,
@@ -73,32 +73,41 @@ export const Homepage = ({ setActiveSection }) => {
 
   return (
     <div className="min-h-screen">
+      {/* ✅ Shared Navigation header */}
+      <Navigation activeSection="home" setActiveSection={setActiveSection} />
+
       {/* Hero Section */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
-        <div 
+        <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ 
+          style={{
             backgroundImage: `url(${heroImage})`,
-            top: '-100px',
-            height: 'calc(100% + 100px)'
+            top: "-100px",
+            height: "calc(100% + 100px)",
           }}
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/70" style={{ top: '-100px', height: 'calc(100% + 100px)' }} />
-        
-        <div ref={heroRef} className="relative z-10 text-center text-white max-w-4xl mx-auto px-4">
-          <h1 className="text-5xl md:text-7xl font-bold mb-6">
+        <div
+          className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/70"
+          style={{ top: "-100px", height: "calc(100% + 100px)" }}
+        />
+
+        <div
+          ref={heroRef}
+          className="relative z-10 text-center text-white max-w-4xl mx-auto px-4"
+        >
+          <h1 className="text-5xl md:text-7xl font-bold mb-6 drop-shadow-[0_2px_18px_rgba(0,0,0,0.6)]">
             Monastery<span className="text-primary">360</span>
           </h1>
           <p className="text-xl md:text-2xl mb-8 text-gray-200">
             Digitizing Sikkim's Sacred Heritage for Future Generations
           </p>
           <p className="text-lg mb-12 text-gray-300 max-w-2xl mx-auto">
-            Explore 200+ monasteries through immersive virtual tours, discover ancient manuscripts, 
+            Explore 200+ monasteries through immersive virtual tours, discover ancient manuscripts,
             and participate in authentic Buddhist cultural experiences.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button 
-              size="lg" 
+            <Button
+              size="lg"
               onClick={() => setActiveSection("tours")}
               className="bg-primary hover:bg-primary/80 text-primary-foreground px-6 py-4 min-w-[180px] text-lg flex items-center rounded-md shadow-glow"
             >
@@ -106,8 +115,8 @@ export const Homepage = ({ setActiveSection }) => {
               Start Virtual Tour
             </Button>
 
-            <Button 
-              size="lg" 
+            <Button
+              size="lg"
               variant="outline"
               onClick={() => setActiveSection("map")}
               className="bg-white/10 backdrop-blur-sm border-white/20 px-6 py-4 min-w-[150px] text-lg flex items-center rounded-md text-white hover:bg-white/20"
@@ -120,8 +129,14 @@ export const Homepage = ({ setActiveSection }) => {
 
         {/* Floating Animation Elements */}
         <div className="absolute top-20 left-10 w-4 h-4 bg-primary rounded-full animate-float opacity-60" />
-        <div className="absolute top-32 right-16 w-6 h-6 bg-primary-glow rounded-full animate-float opacity-40" style={{ animationDelay: "1s" }} />
-        <div className="absolute bottom-40 left-20 w-3 h-3 bg-accent rounded-full animate-float opacity-50" style={{ animationDelay: "2s" }} />
+        <div
+          className="absolute top-32 right-16 w-6 h-6 bg-primary-glow rounded-full animate-float opacity-40"
+          style={{ animationDelay: "1s" }}
+        />
+        <div
+          className="absolute bottom-40 left-20 w-3 h-3 bg-accent rounded-full animate-float opacity-50"
+          style={{ animationDelay: "2s" }}
+        />
       </section>
 
       {/* Stats Section */}
@@ -133,9 +148,7 @@ export const Homepage = ({ setActiveSection }) => {
                 <div className="text-4xl md:text-5xl font-bold text-primary mb-2">
                   {stat.number}
                 </div>
-                <div className="text-muted-foreground font-medium">
-                  {stat.label}
-                </div>
+                <div className="text-muted-foreground font-medium">{stat.label}</div>
               </div>
             ))}
           </div>
@@ -150,8 +163,8 @@ export const Homepage = ({ setActiveSection }) => {
               Discover Sacred Monasteries
             </h2>
             <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-              Journey through time and explore the spiritual heart of Sikkim through our 
-              immersive digital experiences.
+              Journey through time and explore the spiritual heart of Sikkim through our immersive
+              digital experiences.
             </p>
           </div>
           <SikkimCarousel />
@@ -162,33 +175,33 @@ export const Homepage = ({ setActiveSection }) => {
       <section className="py-20 bg-muted/30">
         <div className="container mx-auto px-4">
           <div ref={featuresHeaderRef} className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Explore Our Features
-            </h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Explore Our Features</h2>
             <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-              Comprehensive digital tools to explore, learn, and participate in 
-              Sikkim's rich monastic heritage.
+              Comprehensive digital tools to explore, learn, and participate in Sikkim's rich
+              monastic heritage.
             </p>
           </div>
-          
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {features.map((feature, index) => {
-            const Icon = feature.icon;
-            return (
-              <Card 
-                key={index}
-                ref={setFeatureRef(index)}
-                className="group hover:shadow-heritage transition-all duration-300 cursor-pointer bg-muted/50"
-                onClick={feature.action}
-              >
-                <CardContent className="p-6 text-center">
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {features.map((feature, index) => {
+              const Icon = feature.icon;
+              return (
+                <Card
+                  key={index}
+                  ref={setFeatureRef(index)}
+                  className="group hover:shadow-heritage transition-all duration-300 cursor-pointer bg-muted/50"
+                  onClick={feature.action}
+                >
+                  <CardContent className="p-6 text-center">
                     <div className="mb-4">
-                      <Icon className={`w-12 h-12 mx-auto ${feature.color} group-hover:scale-110 transition-transform duration-300`} />
+                      <Icon
+                        className={`w-12 h-12 mx-auto ${feature.color} group-hover:scale-110 transition-transform duration-300`}
+                      />
                     </div>
                     <h3 className="text-xl font-bold mb-3">{feature.title}</h3>
                     <p className="text-muted-foreground mb-4">{feature.description}</p>
-                    <Button 
-                      variant="outline" 
+                    <Button
+                      variant="outline"
                       className="group-hover:bg-primary group-hover:text-primary-foreground transition-colors duration-300"
                     >
                       Explore Feature
@@ -209,31 +222,31 @@ export const Homepage = ({ setActiveSection }) => {
               Preserving Heritage, Inspiring Discovery
             </h2>
             <p className="text-xl text-gray-200 max-w-3xl mx-auto mb-8">
-              Monastery360 bridges ancient wisdom with modern technology, making Sikkim's 
-              spiritual treasures accessible to everyone while supporting local communities 
-              and preserving cultural heritage for future generations.
+              Monastery360 bridges ancient wisdom with modern technology, making Sikkim's spiritual
+              treasures accessible to everyone while supporting local communities and preserving
+              cultural heritage for future generations.
             </p>
           </div>
           <div className="grid md:grid-cols-3 gap-8 mt-12">
-            <div ref={setMissionCardRef(0)} className="bg-white/10 backdrop-blur-sm rounded-lg p-6">
+            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6" ref={setMissionCardRef(0)}>
               <h3 className="text-xl font-bold mb-3">Cultural Preservation</h3>
               <p className="text-gray-300">
-                Digitizing ancient manuscripts and preserving monastery architecture 
-                for future generations to study and appreciate.
+                Digitizing ancient manuscripts and preserving monastery architecture for future
+                generations to study and appreciate.
               </p>
             </div>
-            <div ref={setMissionCardRef(1)} className="bg-white/10 backdrop-blur-sm rounded-lg p-6">
+            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6" ref={setMissionCardRef(1)}>
               <h3 className="text-xl font-bold mb-3">Tourism Enhancement</h3>
               <p className="text-gray-300">
-                Making monasteries more accessible to global visitors through 
-                virtual experiences and comprehensive travel information.
+                Making monasteries more accessible to global visitors through virtual experiences
+                and comprehensive travel information.
               </p>
             </div>
-            <div ref={setMissionCardRef(2)} className="bg-white/10 backdrop-blur-sm rounded-lg p-6">
+            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6" ref={setMissionCardRef(2)}>
               <h3 className="text-xl font-bold mb-3">Community Empowerment</h3>
               <p className="text-gray-300">
-                Supporting local communities through participatory archiving 
-                and sustainable tourism initiatives.
+                Supporting local communities through participatory archiving and sustainable tourism
+                initiatives.
               </p>
             </div>
           </div>
