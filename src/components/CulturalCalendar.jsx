@@ -129,8 +129,8 @@ export const CulturalCalendar = () => {
   const getTypeColor = (type) => {
     switch (type) {
       case "Festival": return "bg-primary/10 text-primary";
-      case "Ceremony": return "bg-secondary/10 text-secondary-foreground";
-      case "Dance": return "bg-accent/10 text-accent-foreground";
+      case "Ceremony": return "bg-primary/10 text-primary";
+      case "Dance": return "bg-primary/10 text-primary";
       case "Exhibition": return "bg-orange-100 text-orange-700";
       default: return "bg-muted text-muted-foreground";
     }
@@ -166,7 +166,7 @@ export const CulturalCalendar = () => {
             <Button 
               size="lg" 
               onClick={() => handleFilter("festival")}
-              className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-glow"
+              className="bg-primary hover:bg-primary/90 text-primary-foreground px-3 py-4 min-w-[180px] text-lg flex items-center rounded-md shadow-glow"
             >
               <Sparkles className="w-5 h-5 mr-2" />
               Explore Festivals
@@ -175,7 +175,7 @@ export const CulturalCalendar = () => {
               size="lg" 
               variant="outline"
               onClick={() => handleFilter("ceremony")}
-              className="bg-white/10 backdrop-blur-sm border-white/20 text-white hover:bg-white/20 hover:text-white"
+              className="bg-white/10 backdrop-blur-sm border-white/20 text-white hover:bg-white/20 hover:text-white px-3 py-4 min-w-[180px] text-lg flex items-center rounded-md"
             >
               <Calendar className="w-5 h-5 mr-2" />
               View Ceremonies
@@ -236,7 +236,9 @@ export const CulturalCalendar = () => {
               <Card key={event.id} ref={setEventRef(index)} className="group hover:shadow-heritage transition-all duration-300 bg-muted/30">
                 <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                   <CardTitle className="text-sm font-medium">{event.title}</CardTitle>
-                  <Badge className={getTypeColor(event.type)}>{event.type}</Badge>
+                  <Badge className={`${getTypeColor(event.type)} text-sm px-3 py-1`}>
+                    {event.type}
+                  </Badge>
                 </CardHeader>
                 <CardContent>
                   <div className="text-sm text-muted-foreground mb-4">{event.description}</div>
@@ -264,7 +266,7 @@ export const CulturalCalendar = () => {
                         Book Now
                       </Button>
                     ) : (
-                      <Badge variant="outline">Free Entry</Badge>
+                      <Badge variant="outline" className="text-base px-2 py-1">Free Entry</Badge>
                     )}
                   </div>
                 </CardContent>
@@ -288,7 +290,7 @@ export const CulturalCalendar = () => {
             <Button 
               size="lg" 
               onClick={() => handleFilter("festival")}
-              className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-glow"
+              className="bg-primary hover:bg-primary/90 text-primary-foreground px-2 py-1 shadow-glow"
             >
               View All Festivals
             </Button>
